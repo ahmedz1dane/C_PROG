@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char a[30],b[30],c[30],d[40],e[40];
+    int i,l,len,temp;
+    printf("enter the first string :");
+    scanf("%s",a);
+    printf("enter the second string :");
+    scanf("%s",b);
+    strcat(a,b);
+    printf("concatenate of two string is:%s \n",a);
+    l=strlen(a);
+    printf("the length of the string is:%d \n",l);
+    strcpy(c,a);
+    printf("copying string gives %s \n",c);
+    printf("Enter the string to be reversed:");
+    scanf("%s",d);
+    len=strlen(d);
+    for(i=0;i<len/2;i++)
+    {
+        temp = d[i];
+        d[i]=d[len-i-1];
+        d[len-i-1]=temp;
+    }
+    printf("reverse of string is %s",d);
+   return 0;
+}

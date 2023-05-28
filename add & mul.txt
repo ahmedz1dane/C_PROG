@@ -1,0 +1,64 @@
+//gcc 7.4.0
+
+#include  <stdio.h>
+void main()
+{
+    int a[3][3],b[3][3],c[3][3],d[3][3];
+    int i,j,m,n,p,q,k;
+    printf("\n Enter the row and column value of the first matrix:");
+    scanf("%d %d",&m,&n);
+    printf("\n Enter the row and column value of the second  matrix:");
+    scanf("%d %d",&p,&q);
+    if(m!=p || n!=q)
+    {
+        printf("Matrix addition not possible");
+        return;
+    }
+    else if (n!=p)
+    {
+        printf("matrix multiplication not possible");
+        return;
+    }
+    else
+    {
+        printf("You can enter the values of matrix \n");
+    }
+    printf("Enter the values of first matrix :\n");
+    for(i=0;i<m;i++)
+        for(j=0;j<n;j++)
+        scanf("%d",&a[i][j]);
+     
+    printf("Enter the values of second matrix:");
+    for(i=0;i<p;i++)
+        for(j=0;j<q;j++)
+        scanf("%d",&b[i][j]);
+    
+     for(i=0;i<p;i++)
+        for(j=0;j<q;j++)
+        c[i][j]=a[i][j] + b[i][j];
+        
+   printf("\n result of matrix addition is : \n");
+    for(i=0;i<p;i++)
+        {
+            for(j=0;j<q;j++)
+            {
+              printf(" %d ",c[i][j]);
+            }
+            printf("\n");
+        }
+ for(i=0;i<m;i++)
+   for(j=0;j<q;j++)
+     for(k=0;k<p;k++)
+        d[i][j]=d[i][j]+a[i][j] * b[k][j];
+        
+   printf("\n result of matrix multiplication is : \n");
+    for(i=0;i<m;i++)
+     {
+        for(j=0;j<q;j++)
+        {
+          printf(" %d ",d[i][j]);
+        }
+        printf("\n");
+        
+     }
+}

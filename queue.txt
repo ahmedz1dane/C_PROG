@@ -1,15 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define size 10
 int enQueue(int);
 int deQueue();
 int display();
 
-int queue[size],front=-1,rear=-1;
+int queue[100],front=-1,rear=-1,size;
 
 int main()
 {
 	int value, choice;
+	printf("Enter the size of queue:\n");
+	scanf("%d",&size);
 	while(1)
 	{
 		printf("\n\n*****MENU*****");
@@ -54,20 +55,20 @@ int enQueue(int value)
 
 int deQueue()
 {
-	if(front ==rear)
+	if(front>rear||rear==-1)
 		printf("\nQueue is Empty!!! Deletion is not possible");
 	else
 	{
 		printf("\n Deletion :%d",queue[front]);
-		front ++;
-		if (front= rear)
-			front=rear=-1;
+		front=front+1;
+		//if (front= rear)
+			//front=rear=-1;
 	}
 }
 
 int display()
 {
-	if (rear==-1)
+	if (front>rear)
 	printf("\n Queue is Empty!!!");
 	else
 	{

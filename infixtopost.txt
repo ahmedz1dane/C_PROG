@@ -29,10 +29,44 @@ int priority(char x)
     return -1; // Added default return statement to handle other characters
 }
 
+int eval_postfix(char *postfix)
+{
+    char ch;
+    int i = 0, op1, op2;
+    while ((ch = postfix[i++]) != 0)
+    {
+        if (isdigit(ch))
+            push(ch - '0'); 
+        else
+        { 
+            op2 = pop();
+            op1 = pop();
+            switch (ch)
+            {
+            case '+':
+                push(op1 + op2);
+                break;
+            case '-':
+                push(op1 - op2);
+                break;
+            case '*':
+                push(op1 * op2);
+                break;
+            case '/':
+                push(op1 / op2);
+                break;
+            }
+        }
+    }
+    return stack[top];
+}
+
+
 int main()
 {
-    char exp[20];
+    char exp[20],pos[50];
     char *e, x;
+    int i=0;
 
     printf("Enter the expression: ");
     scanf("%s", exp);
@@ -42,18 +76,24 @@ int main()
     while (*e != '\0')
     {
         if (isalnum(*e))
-            printf("%c", *e);
+            {
+                pos[i++]=*e;
+            }
         else if (*e == '(')
             push(*e);
         else if (*e == ')')
         {
             while ((x = pop()) != '(')
-                printf("%c", x);
+                {
+                    pos[i++]=x;
+                }
         }
         else
         {
             while (top != -1 && priority(stack[top]) >= priority(*e))
-                printf("%c", pop());
+                {
+                    pos[i++]=pop();
+                }
             push(*e);
         }
         e++;
@@ -61,8 +101,11 @@ int main()
 
     while (top != -1)
     {
-        printf("%c", pop());
+        pos[i++]=pop();
+        
     }
-
+    pos[i]='\0';
+    printf("\nPostfix Expression: %s",pos);
+    printf("\nEvaluation of Postfix: %d \n",eval_postfix(pos));
     return 0;
 }

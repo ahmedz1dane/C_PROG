@@ -1,5 +1,3 @@
-//gcc 7.4.0
-
 #include  <stdio.h>
 void main()
 {
@@ -47,10 +45,14 @@ void main()
             printf("\n");
         }
  for(i=0;i<m;i++)
-   for(j=0;j<q;j++)
-     for(k=0;k<p;k++)
-        d[i][j]=d[i][j]+a[i][j] * b[k][j];
-        
+ {
+   	for(j=0;j<q;j++)
+   	{
+   		d[i][j]=0;
+     		for(k=0;k<p;k++)
+        		d[i][j]=d[i][j]+a[i][k] * b[k][j];
+        }
+  }
    printf("\n result of matrix multiplication is : \n");
     for(i=0;i<m;i++)
      {
